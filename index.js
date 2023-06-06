@@ -4,7 +4,6 @@ const morgan = require('morgan')
 const cors = require('cors')
 
 const Person = require('./models/person')
-const person = require('./models/person')
 
 const app = express()
 
@@ -108,9 +107,10 @@ app.put('/api/persons/:id', (req, response, next) => {
 })
 
 
-app.get('/api/info', (request, response) => {
-    response.send(`Phonebook has info for {Person.length} people<br/>
-        ${new Date()}`)
+app.get('/api/info', async (request, response) => {
+    const size = await Person.countDocuments({})
+    console.log(size)
+    response.send(`Phonebook has info for ${size} people<br/>${new Date()}`)
 })
 
 app.use(errorHandler)
@@ -119,5 +119,3 @@ const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log((`Server running on port ${PORT}`))
 })
-
-
