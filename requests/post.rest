@@ -1,7 +1,7 @@
-POST https://uohs-fs-part-3.onrender.com/api/persons
+POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 {
     "name": "Pest",
-    "number": "999"
+    "number": "999ssssssss"
 }
